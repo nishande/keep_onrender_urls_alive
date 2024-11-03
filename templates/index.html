@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Console Output</title>
+    <style>
+        #console {
+            background-color: black;
+            color: #00ff00;
+            font-family: monospace;
+            padding: 20px;
+            height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="console"></div>
+
+    <script>
+        const console = document.getElementById('console');
+        
+        function updateConsole() {
+            fetch('/get_logs')
+                .then(response => response.json())
+                .then(data => {
+                    console.innerHTML = ''; // Clear current content
+                    data.logs.forEach(log => {
+                        const logEntry = document.createElement('div');
+                        logEntry.className = 'log-entry';
+                        logEntry.textContent = log;
+                        console.appendChild(logEntry);
+                    });
+                });
+        }
+
+        // Initial load
+        updateConsole();
+
+        // Update console every 1 seconds
+        setInterval(updateConsole, 1000);
+    </script>
+</body>
+</html>
