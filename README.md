@@ -1,40 +1,43 @@
-# URL Caller Script
+# Flask App for Calling URLs
 
-This script is designed to call a list of URLs every 60 minutes to keep them active. The URLs are stored in a JSON file (`urls.json`).
+This Flask application is designed to call URLs from a JSON file and log the results. It also serves a home page and provides an endpoint to retrieve logs.
 
 ## Features
 
-- Calls each URL every 60 minutes.
-- Prints a success message for each URL called.
-- Retries on failure.
+- **Logging**: Logs messages to a file with a maximum number of lines.
+- **URL Calling**: Calls URLs from a JSON file and logs the results.
+- **Background Task**: Runs a background task to periodically call URLs.
+- **Home Page**: Serves a home page using a template.
+- **Get Logs**: Provides an endpoint to retrieve logs.
 
-## Requirements
+## How to Run
 
-- Python 3.x
-- `requests` library
-
-## Usage
-
-1. Ensure you have Python 3.x installed.
-2. Install the required dependencies by running:
-   ```sh
+1. Install the required dependencies:
+   ```bash
    pip install -r requirements.txt
    ```
-3. Run the script:
-   ```sh
-   python script.py
+
+2. Run the Flask app:
+   ```bash
+   python app.py
    ```
 
-## Configuration
+3. Open your browser and navigate to `http://127.0.0.1:5000/` to see the home page.
 
-The URLs to be called are stored in the `urls.json` file. You can add or remove URLs as needed.
+4. To retrieve logs, navigate to `http://127.0.0.1:5000/get_logs`.
 
-Example `urls.json`:
-```json
-{
-    "urls": [
-        "https://example.com/api/endpoint1",
-        "https://example.com/api/endpoint2",
-        "https://example.com/api/endpoint3"
-    ]
-}
+## Dependencies
+
+- Flask
+- requests
+
+## Files
+
+- `app.py`: The main Flask application.
+- `templates/index.html`: The HTML template for the home page.
+- `urls.json`: The JSON file containing URLs to call.
+- `application.log`: The log file.
+
+## License
+
+This project is licensed under the MIT License.
